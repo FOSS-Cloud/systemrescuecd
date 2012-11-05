@@ -32,8 +32,24 @@ else
 	VERSION=""
 fi
 
+# ============ INSTALLER ===============================
+
+if [ "$(basename $(tty))" = "tty1" ]
+then
+echo -e "${lc1} == ${lc2}FOSS-Cloud Installer, based on SystemRescue-Cd${lc1} -----${VERSION}== ${lc2}$(basename $(tty))${dc2}/6 ${lc1}=="
+echo -e "                      ${dc1}http://www.foss-cloud.org/"
+echo -e "                      ${dc1}http://www.sysresccd.org/"
+echo
+	if [ ! -f "/mnt/cdrom/sysrcd.dat" ]
+	then
+		/bin/sysrcd-init sysresccd_find_file "auto" "/sysrcd.dat" "/mnt/cdrom" "ro"
+	fi
+	bash /mnt/cdrom/foss-cloud-installer
+else
+
 fbecho
-echo -e "${lc1} =========== ${lc2}SystemRescue-Cd${lc1} -----${VERSION}=========== ${lc2}$(basename $(tty))${dc2}/6 ${lc1}=="
+echo -e "${lc1} == ${lc2}FOSS-Cloud Installer, based on SystemRescue-Cd${lc1} -----${VERSION}== ${lc2}$(basename $(tty))${dc2}/6 ${lc1}=="
+echo -e "                      ${dc1}http://www.foss-cloud.org/"
 echo -e "                      ${dc1}http://www.sysresccd.org/"
 echo
 echo -e "${dc1}*${dc2} You should stop the Network-Manager service if you want to configure "
@@ -56,10 +72,12 @@ echo -e "${dc1}*${lc1} Graphical environment${dc2} : use either ${lc2}Xorg${dc2}
 echo -e "   Type ${lc2}wizard${dc2} to run the graphical environment (or ${lc2}startx${dc2} but it may fail)"
 echo -e "   X.Org comes with the XFCE environment and several graphical tools:"
 echo -e "   ${dc1}-${dc2} Partition manager:..${lc2}gparted${dc2}"
-echo -e "   ${dc1}-${dc2} Web browsers:.......${lc2}firefox-3.6${dc2}"
+echo -e "   ${dc1}-${dc2} Web browsers:.......${lc2}firefox-5${dc2}"
 echo -e "   ${dc1}-${dc2} Text editors:.......${lc2}gvim${dc2} and ${lc2}geany${dc2}"
 echo
 fbecho
+
+fi
 
 # ============ SHELL PROMPT ============================
 exec $SHELL --login
