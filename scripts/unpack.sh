@@ -48,6 +48,7 @@ for f in bootprog bootdisk ntpasswd usb_inst usb_inst.sh usbstick.htm ; do
     bsdtar -x --include "${f}" -f "${WORKDIR}/${ISO_IMAGE}" -C "${WORKDIR}/customcd/isoroot"
 done
 
+rm -rf "${WORKDIR}/customcd/files"
 unsquashfs -dest "${WORKDIR}/customcd/files" "${WORKDIR}/sysrcd.dat"
 
 
