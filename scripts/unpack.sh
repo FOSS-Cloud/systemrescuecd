@@ -38,14 +38,14 @@ fi
 
 mkdir -p "${WORKDIR}"
 
-bsdtar -x --include sysrcd.dat -f "${ISO_IMAGE}" -C "${WORKDIR}"
+bsdtar -x --include sysrcd.dat -f "${WORKDIR}/${ISO_IMAGE}" -C "${WORKDIR}"
 
 mkdir -p "${WORKDIR}/customcd/isoroot"
 
-bsdtar -x --include isolinux --include version -f "${ISO_IMAGE}" -C "${WORKDIR}/customcd/isoroot"
+bsdtar -x --include isolinux --include version -f "${WORKDIR}/${ISO_IMAGE}" -C "${WORKDIR}/customcd/isoroot"
 
 for f in bootprog bootdisk ntpasswd usb_inst usb_inst.sh usbstick.htm ; do
-    bsdtar -x --include "${f}" -f "${ISO_IMAGE}" -C "${WORKDIR}/customcd/isoroot"
+    bsdtar -x --include "${f}" -f "${WORKDIR}/${ISO_IMAGE}" -C "${WORKDIR}/customcd/isoroot"
 done
 
 unsquashfs -dest "${WORKDIR}/customcd/files" "${WORKDIR}/sysrcd.dat"
