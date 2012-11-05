@@ -28,7 +28,6 @@
 #
 #
 
-ISO_IMAGE="systemrescuecd-x86-2.0.0.iso"
 WORKDIR="/build/sysresccd"
 
 if [ ${UID} != 0 ] ; then
